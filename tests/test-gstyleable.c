@@ -1,3 +1,4 @@
+#include "gstyleable.h"
 #include "gstylesheet.h"
 #include "gstyleclass.h"
 

@@ -6,4 +6,6 @@ libgstyle_la_LIBADD = ${GSTYLE_LIBS}
 
 libgstyle_la_SOURCES = \
             gstylesheet.c   \
+            gstyleable.c    \
+            gstyleable.h    \
             gstylesheet.h
