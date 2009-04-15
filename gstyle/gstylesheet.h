@@ -2,7 +2,7 @@
 #define _G_STYLESHEET
 
 #include <glib-object.h>
-#include <libcroco/libcroco.h>
+#include "gstyleable.h"
 
 G_BEGIN_DECLS
 
@@ -39,7 +39,7 @@ GStylesheet* g_stylesheet_new_from_file (const gchar *filename,
                                          GError      **error);
 
 gboolean     g_stylesheet_get_property (GStylesheet  *stylesheet,
-                                        CRNode const *node,
+                                        GStyleable   *styleable,
                                         const gchar  *property_name,
                                         gchar        **property);
 

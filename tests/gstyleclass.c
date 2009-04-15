@@ -28,7 +28,6 @@ static char*       g_style_class_get_attribute        (const GStyleable *node,
                                                        const char       *property);
 static guint       g_style_class_get_children_count   (const GStyleable *node);
 static guint       g_style_class_get_index            (const GStyleable *node);
-static void        g_style_class_release              (GStyleable       *node);
 
 
 /*
@@ -49,7 +48,6 @@ g_styleable_interface_init (GStyleableIface *iface)
   iface->get_attribute = g_style_class_get_attribute;
   iface->get_children_count = g_style_class_get_children_count;
   iface->get_index = g_style_class_get_index;
-  iface->release = g_style_class_release;
 }
 
 static void
@@ -61,6 +59,25 @@ g_style_class_dispose (GObject *object)
 static void
 g_style_class_finalize (GObject *object)
 {
+  GStyleClassPrivate *priv;
+  GList *children;
+
+  priv = G_STYLE_CLASS_GET_PRIVATE (object);
+
+  g_hash_table_unref (priv->attributes);
+
+  children = priv->children;
+
+  while (children)
+    {
+      g_object_unref (G_OBJECT (children->data));
+
+      children = children->next;
+    }
+
+  g_list_free (children);
+  priv->children = NULL;
+
   G_OBJECT_CLASS (g_style_class_parent_class)->finalize (object);
 }
 
@@ -226,29 +243,6 @@ g_style_class_get_index (const GStyleable *node)
   g_return_val_if_fail (index >= 0, 0);
 
   return (guint)index;
-}
-
-static void
-g_style_class_release (GStyleable *node)
-{
-  GStyleClassPrivate *priv;
-  GList *children;
-
-  priv = G_STYLE_CLASS_GET_PRIVATE (node);
-
-  g_hash_table_unref (priv->attributes);
-
-  children = priv->children;
-
-  while (children)
-    {
-      g_style_class_release (G_STYLEABLE (children->data));
-
-      children = children->next;
-    }
-
-  g_object_unref (node);
-
 }
 
 /* GStyleClass functions */

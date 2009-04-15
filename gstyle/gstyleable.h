@@ -30,7 +30,6 @@ typedef struct {
                                               const char*);
   guint              (*get_children_count)   (const GStyleable*);
   guint              (*get_index)            (const GStyleable*);
-  void               (*release)              (GStyleable*);
 } GStyleableIface;
 
 GType              g_styleable_get_type             (void);
@@ -44,7 +43,6 @@ gchar*             g_styleable_get_attribute        (const GStyleable *node,
                                                      const gchar      *property);
 guint              g_styleable_get_children_count   (const GStyleable *node);
 guint              g_styleable_get_index            (const GStyleable *node);
-void               g_styleable_release              (GStyleable       *node);
 
 
 G_END_DECLS

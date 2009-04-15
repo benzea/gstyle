@@ -101,10 +101,4 @@ g_styleable_get_index (GStyleable const *styleable)
   return G_STYLEABLE_GET_INTERFACE (styleable)->get_index (styleable);
 }
 
-void
-g_styleable_release (GStyleable *styleable)
-{
-  g_return_if_fail (G_IS_STYLEABLE (styleable));
 
-  return G_STYLEABLE_GET_INTERFACE (styleable)->release (styleable);
-}
