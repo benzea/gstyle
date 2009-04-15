@@ -22,16 +22,15 @@ typedef struct {
   GTypeInterface base_iface;
 
   GStyleable*        (*get_parent_node)      (const GStyleable*);
-	GStyleable*        (*get_first_child)      (const GStyleable*);
-	GStyleable*        (*get_next_sibling)     (const GStyleable*);
-	GStyleable*        (*get_previous_sibling) (const GStyleable*);
-	char const*        (*get_node_name)        (const GStyleable*);
-	char*              (*get_attribute)        (const GStyleable*,
+  GStyleable*        (*get_first_child)      (const GStyleable*);
+  GStyleable*        (*get_next_sibling)     (const GStyleable*);
+  GStyleable*        (*get_previous_sibling) (const GStyleable*);
+  char const*        (*get_node_name)        (const GStyleable*);
+  char*              (*get_attribute)        (const GStyleable*,
                                               const char*);
-	guint              (*get_children_count)   (const GStyleable*);
-	guint              (*get_index)            (const GStyleable*);
-	void               (*release)              (GStyleable*);
-
+  guint              (*get_children_count)   (const GStyleable*);
+  guint              (*get_index)            (const GStyleable*);
+  void               (*release)              (GStyleable*);
 } GStyleableIface;
 
 GType              g_styleable_get_type             (void);
